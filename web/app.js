@@ -219,7 +219,7 @@ function attribution(edgeIds) {
 const MapView = {
   canvas: null, ctx: null, w: 0, h: 0,
   centre: { lat: 12.95, lon: 77.62 }, zoom: 10.4,
-  tiles: new Map(), tilesOn: true, hover: null, routeEdges: null, altEdges: null,
+  tiles: new Map(), tilesOn: false, hover: null, routeEdges: null, altEdges: null,
   drag: null,
 
   init() {
@@ -298,6 +298,7 @@ const MapView = {
     };
     const x2lon = (x) => x / n * 360 - 180;
     const y2lat = (y) => { const m = Math.PI * (1 - 2 * y / n); return 180 / Math.PI * Math.atan(Math.sinh(m)); };
+    let drew = false;
     const tl = [this.unproject(0, 0), this.unproject(this.w, this.h)];
     const x0 = Math.floor(lon2x(tl[0][1])), x1 = Math.ceil(lon2x(tl[1][1]));
     const y0 = Math.floor(lat2y(tl[0][0])), y1 = Math.ceil(lat2y(tl[1][0]));
@@ -315,16 +316,29 @@ const MapView = {
               $('#tiletoggle').title = 'Basemap unavailable offline — the network still renders';
               this.draw();
             } };
-          img.src = `https://basemaps.cartocdn.com/dark_all/${z}/${x}/${y}.png`;
+          img.src = `https://tile.openstreetmap.org/${z}/${x}/${y}.png`;
           this.tiles.set(key, img);
         }
         if (!img || !img.complete || !img.naturalWidth) continue;
         const [px, py] = this.project(y2lat(y), x2lon(x));
         const [qx, qy] = this.project(y2lat(y + 1), x2lon(x + 1));
-        this.ctx.globalAlpha = 0.55;
+        this.ctx.globalAlpha = 0.85;
         this.ctx.drawImage(img, px, py, qx - px, qy - py);
         this.ctx.globalAlpha = 1;
+        drew = true;
       }
+    }
+    if (drew) {
+      // Knock the light OSM tiles back so the risk network stays dominant.
+      this.ctx.fillStyle = 'rgba(15,16,19,0.70)';
+      this.ctx.fillRect(0, 0, this.w, this.h);
+      this.ctx.font = '10px ui-sans-serif,system-ui';
+      this.ctx.fillStyle = 'rgba(200,205,215,0.75)';
+      this.ctx.textAlign = 'right';
+      this.ctx.textBaseline = 'bottom';
+      this.ctx.fillText('© OpenStreetMap contributors', this.w - 10, this.h - 8);
+      this.ctx.textAlign = 'left';
+      this.ctx.textBaseline = 'alphabetic';
     }
   },
   unproject(px, py) {
