@@ -1,0 +1,264 @@
+{
+  "generated_at": "2026-11-11T14:31:40",
+  "data_source": "GEO_ANCHORED_SYNTHETIC",
+  "place": "Bengaluru ORR + Hosur Road corridor",
+  "honesty_note": "Road network geometry is real-world anchored; telematics events are SYNTHETIC because no public Indian fleet-telematics dataset exists. These metrics validate the pipeline and the modelling choices, not real-world accuracy. Real accuracy requires a fleet data-sharing agreement; see docs/DATA_PROVENANCE.md.",
+  "setup": {
+    "train_months": 9.0,
+    "test_months": 4.0,
+    "train_events": 43269,
+    "test_events": 20765,
+    "segments": 584,
+    "nodes": 266,
+    "network_km": 859.9,
+    "prior": "gbm",
+    "half_life_months": 6.0,
+    "fitted_dispersion_a": 39.813,
+    "prior_log_error_sigma": 0.499,
+    "roads": 292
+  },
+  "map_matching": {
+    "road_match_accuracy": 0.9948582030214683,
+    "events_in": 43269,
+    "matched": 37730,
+    "match_rate": 0.8719868728188772,
+    "median_snap_dist_m": 11.826830676272099,
+    "p95_snap_dist_m": 34.41726020392539,
+    "max_dist_gate_m": 60.0,
+    "ambiguity_margin_m": 18.0
+  },
+  "confidence_mix": {
+    "High": 0.2774,
+    "Medium": 0.4007,
+    "Low": 0.3219
+  },
+  "segment_model": {
+    "n_segments": 292,
+    "positive_rate": 0.934931506849315,
+    "roc_auc": {
+      "routeshield": 0.9277038750722961,
+      "raw_history_count": 0.9509350298823983,
+      "raw_history_rate": 0.9509350298823983,
+      "road_features_only": 0.9346443030653557,
+      "length_only": 0.526701368806632
+    },
+    "average_precision": {
+      "routeshield": 0.9947224118378366,
+      "raw_history_count": 0.9964201872990257,
+      "length_only": 0.9480692294835211
+    },
+    "capture_at_10pct": {
+      "routeshield": 0.7201124400595271,
+      "raw_history_count": 0.719891969354572,
+      "length_only": 0.13580995425232872
+    },
+    "capture_at_20pct": {
+      "routeshield": 0.8344265005787356,
+      "raw_history_count": 0.8346469712836907
+    },
+    "n_roads": 292,
+    "spearman_pred_vs_observed_rate": 0.6274324602417402,
+    "roc_auc_top_decile_rate": {
+      "routeshield": 0.8660305343511451,
+      "raw_history_rate": 0.9038167938931297,
+      "raw_history_count": 0.40076335877862596,
+      "road_features_only": 0.8081424936386769
+    },
+    "severe_event_prevalence": 0.8287671232876712,
+    "roc_auc_severe_event": {
+      "routeshield": 0.932892561983471,
+      "raw_history_count": 0.9506611570247934,
+      "road_features_only": 0.927603305785124,
+      "length_only": 0.589504132231405
+    },
+    "capture_at_10pct_severe": {
+      "routeshield": 0.7057051736357194,
+      "raw_history_count": 0.7032246633593197
+    },
+    "calibration": [
+      {
+        "bin": 1,
+        "n_segments": 30,
+        "mean_predicted_rate": 0.012969258301611558,
+        "expected_events": 1462.77,
+        "observed_events": 1481.0,
+        "ratio_obs_over_exp": 1.012
+      },
+      {
+        "bin": 2,
+        "n_segments": 30,
+        "mean_predicted_rate": 0.017070982466699837,
+        "expected_events": 1313.5,
+        "observed_events": 1462.0,
+        "ratio_obs_over_exp": 1.113
+      },
+      {
+        "bin": 3,
+        "n_segments": 29,
+        "mean_predicted_rate": 0.02029236447838338,
+        "expected_events": 968.41,
+        "observed_events": 1043.0,
+        "ratio_obs_over_exp": 1.077
+      },
+      {
+        "bin": 4,
+        "n_segments": 29,
+        "mean_predicted_rate": 0.02243732315323772,
+        "expected_events": 1957.21,
+        "observed_events": 2161.0,
+        "ratio_obs_over_exp": 1.104
+      },
+      {
+        "bin": 5,
+        "n_segments": 29,
+        "mean_predicted_rate": 0.024524016092469743,
+        "expected_events": 686.41,
+        "observed_events": 745.0,
+        "ratio_obs_over_exp": 1.085
+      },
+      {
+        "bin": 6,
+        "n_segments": 29,
+        "mean_predicted_rate": 0.02755140222164872,
+        "expected_events": 1781.82,
+        "observed_events": 1968.0,
+        "ratio_obs_over_exp": 1.104
+      },
+      {
+        "bin": 7,
+        "n_segments": 29,
+        "mean_predicted_rate": 0.03155954003483945,
+        "expected_events": 412.43,
+        "observed_events": 481.0,
+        "ratio_obs_over_exp": 1.166
+      },
+      {
+        "bin": 8,
+        "n_segments": 29,
+        "mean_predicted_rate": 0.037232740873169266,
+        "expected_events": 5895.01,
+        "observed_events": 6340.0,
+        "ratio_obs_over_exp": 1.075
+      },
+      {
+        "bin": 9,
+        "n_segments": 29,
+        "mean_predicted_rate": 0.054201017030979085,
+        "expected_events": 1727.68,
+        "observed_events": 1848.0,
+        "ratio_obs_over_exp": 1.07
+      },
+      {
+        "bin": 10,
+        "n_segments": 29,
+        "mean_predicted_rate": 0.07822879445108495,
+        "expected_events": 564.72,
+        "observed_events": 614.0,
+        "ratio_obs_over_exp": 1.087
+      }
+    ],
+    "calibration_error_mean_abs_log_ratio": 0.08496069301559771,
+    "predictive_interval_coverage_90": 0.9178082191780822,
+    "sparse_segment_share": 0.25,
+    "roc_auc_sparse_only": {
+      "routeshield": 0.7151515151515152,
+      "raw_history_count": 0.8156565656565656
+    },
+    "spearman_sparse_only": {
+      "routeshield": 0.265800711675292,
+      "raw_history_rate": 0.5789553491447221
+    },
+    "spearman_vs_true_rate_sparse_only": {
+      "routeshield": 0.7886893743058128,
+      "raw_history_rate": 0.47576497294757636
+    },
+    "roc_auc_top_decile_TRUE_rate": {
+      "routeshield": 0.960941475826972,
+      "raw_history_rate": 0.8398854961832061,
+      "raw_history_count": 0.45935114503816793,
+      "road_features_only": 0.9323155216284987
+    },
+    "latent_rate_interval_coverage_90": 0.8904109589041096,
+    "latent_rate_interval_coverage_90_sparse": 0.8767123287671232,
+    "spearman_pred_vs_true_rate": 0.8741476614099261
+  },
+  "counterfactual": {
+    "trips_evaluated": 600,
+    "pct_with_safer_alternative": 11.666666666666666,
+    "avg_pareto_options": 1.405,
+    "avg_time_increase_pct_when_switched": 7.5603608657717825,
+    "heldout_observed_risk_baseline": 418.5,
+    "heldout_observed_risk_recommended": 407.34,
+    "heldout_risk_reduction_pct": 2.67,
+    "fleet_time_cost_pct": 1.03,
+    "time_budget_pct": 15.0,
+    "min_risk_cut_pct": 10.0,
+    "fleet_true_risk_reduction_pct": 3.885,
+    "avg_true_risk_reduction_pct_when_switched": 22.85868484056502
+  },
+  "tradeoff_curve": [
+    {
+      "time_budget_pct": 0.0,
+      "trips_switched_pct": 0.0,
+      "fleet_time_cost_pct": 0.0,
+      "fleet_true_risk_reduction_pct": 0.0,
+      "heldout_risk_reduction_pct": 0.0,
+      "avg_time_cost_pct_when_switched": 0.0
+    },
+    {
+      "time_budget_pct": 5.0,
+      "trips_switched_pct": 2.5,
+      "fleet_time_cost_pct": 0.093,
+      "fleet_true_risk_reduction_pct": 2.489,
+      "heldout_risk_reduction_pct": 1.53,
+      "avg_time_cost_pct_when_switched": 2.43
+    },
+    {
+      "time_budget_pct": 10.0,
+      "trips_switched_pct": 8.5,
+      "fleet_time_cost_pct": 0.613,
+      "fleet_true_risk_reduction_pct": 3.969,
+      "heldout_risk_reduction_pct": 2.76,
+      "avg_time_cost_pct_when_switched": 5.96
+    },
+    {
+      "time_budget_pct": 15.0,
+      "trips_switched_pct": 12.5,
+      "fleet_time_cost_pct": 1.374,
+      "fleet_true_risk_reduction_pct": 5.305,
+      "heldout_risk_reduction_pct": 3.0,
+      "avg_time_cost_pct_when_switched": 8.73
+    },
+    {
+      "time_budget_pct": 20.0,
+      "trips_switched_pct": 17.0,
+      "fleet_time_cost_pct": 2.37,
+      "fleet_true_risk_reduction_pct": 6.198,
+      "heldout_risk_reduction_pct": 3.58,
+      "avg_time_cost_pct_when_switched": 11.45
+    },
+    {
+      "time_budget_pct": 30.0,
+      "trips_switched_pct": 19.5,
+      "fleet_time_cost_pct": 2.684,
+      "fleet_true_risk_reduction_pct": 6.568,
+      "heldout_risk_reduction_pct": 4.0,
+      "avg_time_cost_pct_when_switched": 13.14
+    }
+  ],
+  "scalability": {
+    "n_segments": 584,
+    "n_nodes": 266,
+    "shortest_path_ms_per_route": 0.096,
+    "score_route_ms_per_route_1000_samples": 0.78,
+    "alternatives_ms_per_request": 1.56,
+    "note": "Single core, pure Python Dijkstra. Segment risk is precomputed in the nightly batch, so request-time cost is a table lookup plus a sum; it does not grow with event volume."
+  },
+  "timings_s": {
+    "build_network_s": 0.011,
+    "simulate_events_s": 0.147,
+    "map_match_s": 1.237,
+    "fit_risk_model_s": 0.692,
+    "hotspots_s": 3.02
+  }
+}

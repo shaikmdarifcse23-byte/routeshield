@@ -1,0 +1,42 @@
+name: CI
+
+on:
+  push: { branches: [main] }
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.10", "3.12"]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+          cache: pip
+      - run: pip install -r requirements.txt
+      - name: Run the test suite
+        run: python -m pytest -q
+      - name: Run the full pipeline end to end
+        run: python -m routeshield.cli demo --trips 60
+      - name: Check the headline metrics did not regress
+        run: |
+          python - <<'PY'
+          import json, sys
+          r = json.load(open("artifacts/results.json"))
+          sm = r["segment_model"]
+          checks = {
+            "ranks true high-risk roads": (sm["roc_auc_top_decile_TRUE_rate"]["routeshield"], 0.85, 1.01),
+            "beats raw counts":           (sm["roc_auc_top_decile_TRUE_rate"]["routeshield"]
+                                           - sm["roc_auc_top_decile_TRUE_rate"]["raw_history_count"], 0.2, 2.0),
+            "interval coverage":          (sm["latent_rate_interval_coverage_90"], 0.80, 0.97),
+            "map-match road accuracy":    (r["map_matching"]["road_match_accuracy"], 0.97, 1.01),
+          }
+          bad = {k: v for k, (v, lo, hi) in checks.items() if not (lo <= v <= hi)}
+          for k, (v, lo, hi) in checks.items():
+              print(f"{'ok ' if k not in bad else 'FAIL'} {k}: {v:.4f} (want {lo}-{hi})")
+          sys.exit(1 if bad else 0)
+          PY

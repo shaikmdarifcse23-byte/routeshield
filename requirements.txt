@@ -1,0 +1,13 @@
+# Core model + pipeline. Deliberately small: a judge or a fleet engineer
+# should be able to run this with one pip install and no compiler.
+numpy>=1.26
+scipy>=1.11
+scikit-learn>=1.3        # HDBSCAN and Poisson gradient boosting are built in
+
+# API service (optional: only needed for `routeshield serve`)
+fastapi>=0.110
+uvicorn>=0.27
+pydantic>=2.5
+
+# Tests (optional)
+pytest>=7.4
